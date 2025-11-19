@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCR Form</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="ncrstyle.css">
+    <script src="scripts/ncr.js" defer></script>
+    <script src="scripts/pseudobackend.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="main menu">
+            <a href="index.html">
+                <img src="images/Crossfire_Logo-removebg-preview.ico" alt="Crossfire NCR System"/>
+            </a>
+            <ul class="menu">
+                <li id="navHome">Home</li>
+                <li id="navNewForm">New NCR</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="wrapper">
+        <section id="ncrhead" class="three-columns">
+            <div class="displayItem">
+                <p>NCR Number: <span class="displayField" id="displayNCRNo"></span></p>
+            </div>
+            <div class="displayItem">
+                <p>Date Created: <span class="displayField" id="displayDateCreated"></span></p>
+            </div>
+            <div class="displayItem" id="displayItemStage">
+                <p>Stage: <span class="displayField" id="displayStage"></span></p>
+            </div>
+        </section>
+
+        <section id="qaform">
+            <h2>Quality Assurance Form Section</h2>
+            <form method="post" id="frmQA">
+                <small><strong>Note: </strong> Fields marked with a red asterisk (<span class="asterisk">*</span>) are required to complete the form. Fields marked with <span class="asterisk">Required</span> are required to save the form.</small>
+                <button class="help-button">help</button>
+                <br>
+                <br>
+                <div class="four-columns">
+                    <div>
+                        <label for="numPOProdNo"> PO or Prod. No.: <span class="asterisk">* Required</span></label>
+                        <br>
+                        <input id="numPOProdNo" class="formField" name="poID" type="number" aria-required="true" placeholder="123456789"/>
+                    </div>
+
+                    <div>
+                        <label for="numSAPNo">SAP No.: <span class="asterisk">* Required</span></label>
+                        <br>
+                        <input id="numSAPNo" class="formField" name="productID" type="number" aria-required="true" placeholder="123456789"/>
+                    </div>
+
+                    <div class="span-two">
+                        <label for="txtSupplierName">Supplier Name: <span class="asterisk">*</span></label>
+                        <br>
+                        <input id="txtSupplierName" class="formField" name="supplierName" type="text" aria-required="true" placeholder="Some company"/>
+                    </div>
+                    <div>
+                        <label for="radSupplierOrRecInsp">Applicable Process: <span class="asterisk">*</span></label>
+                        <br>
+                        <input id="radSupplierOrRecInsp" class="formField" name="qaOpt" value="qaOptSupOrRecInsp" type="radio" aria-required="true"/>
+                        <label for="radSupplierOrRecInsp">Supplier or Rec-Insp</label>
+                        <br>
+                        <input id="radWIP" class="formField" name="qaOpt" value="qaOptWIP" type="radio" aria-required="true"/>
+                        <label for="radWIP">WIP (Production Order)</label>
+                    </div>
+
+                    <div>
+                        <label for="numSalesOrderNo">Sales Order No.: <span class="asterisk">*</span></label>
+                        <br>
+                        <input id="numSalesOrderNo" class="formField" name="poSalesOrderNo" type="number" aria-required="true" placeholder="123456789"/>
+                    </div>
+
+                    <div>
+                        <label for="numQuantityRec">Quantity Recieved: <span class="asterisk">*</span></label>
+                        <br>
+                        <input id="numQuantityRec" class="formField" name="poQuantityReceived" type="number" aria-required="true" placeholder="54321"/>
+                    </div>
+
+                    <div>
+                        <label for="numQuantityDefective">Quantity Defective: <span class="asterisk">*</span></label>
+                        <br>
+                        <input id="numQuantityDefective" class="formField" name="qaQuantityDefective" type="number" aria-required="true" placeholder="12345"/>
+                    </div>
+                    <div class="span-four">
+                        <label for="txtProdDesc">Description of Item<span class="asterisk">*</span></label>
+                        <br>
+                        <input type="text" id="txtProdDesc" class="formField" name="productDesc" aria-required="true" placeholder="Enter a brief description of the item">
+                    </div>
+                    <div class="span-two">
+                        <input id="chkNonConforming" class="formField" name="qaNonConforming" type="checkbox"/>
+                        <label for="chkNonConforming">Item Marked Nonconforming?</label>
+                    </div>
+                    <div class="span-two">
+                        <input id="chkEngNeeded" class="formField" name="qaEngNeeded" type="checkbox"/>
+                        <label for="chkEngNeeded"> Engineer Disposition Needed? </label>
+                    </div>
+                    <div class="span-four">
+                        <label for="txaDefectDesc">Description of Defect: <span class="asterisk">*</span></label>
+                        <br>
+                        <textarea id="txaDefectDesc" class="formField textarea-height" name="qaDefectDesc" aria-required="true" placeholder="Enter a description of the defects"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <button id="btnQASave" class="btn">Save</button>
+                    <button id="btnQAComplete" class="btn">Complete</button>
+                    <button id="btnQAClose" class="btn">Close</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="qadisplay">
+            <h2>Quality Assurance Form Section</h2>
+            <div id="qadisplaywrapper" class="displaywrapper">
+                
+                    <div class="displayItem" id="displayItemPONo">
+                        <p>PO or Prod. No.: <span class="displayField" id="displayPONo"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemSAPNo">
+                        <p>SAP No.: <span class="displayField" id="displaySAPNo"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemSupplierName">
+                        <p>Supplier Name: <span class="displayField" id="displaySupplierName"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemApplicableProcess">
+                        <p>Applicable Process: <span class="displayField" id="displayApplicableProcess"></span></p>
+                    </div>
+                
+                
+                    <div class="displayItem" id="displayItemSalesOrderNo">
+                        <p>Sales Order No.: <span class="displayField" id="displaySalesOrderNo"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemQuantityReceived">
+                        <p>Quantity Received: <span class="displayField" id="displayQuantityReceived"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemQuantityDefective">
+                        <p>Quantity Defective: <span class="displayField" id="displayQuantityDefective"></span></p>
+                    </div>
+                    <div class="displayItem span-two" id="displayItemDescription">
+                        <p>Description of Item: <span class="displayField" id="displayDescription"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemNonconforming">
+                        <p>Item Marked Nonconforming: <span class="displayField" id="displayNonconforming"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemEngineerNeeded">
+                        <p>Engineer Disposition Needed: <span class="displayField" id="displayEngineerNeeded"></span></p>
+                    </div>
+                    <div class="displayItem span-two" id="displayItemDefectDescription">
+                        <p>Description of Defect: <br><span class="displayField" id="displayDefectDescription"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemQACompletedBy">
+                        <p>Completed by: <span class="displayField" id="displayQACompletedBy"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemQACompletedOn">
+                        <p>Completed on: <span class="displayField" id="displayQACompletedOn"></span></p>
+                    </div>
+                
+            </div>  
+        <button class="btnCollapseDisplay" id="btnQACollapseDisplay">Hide</button>
+        </section>
+
+        <section id="engform">
+            <h2>Engineering Form Section</h2>
+            <form method="POST" id="frmEng">
+                <small><strong>Note: </strong> Fields marked with a red asterisk (<span class="asterisk">*</span>) are required to complete the form. Fields marked with <span class="asterisk">Required</span> are required to save the form.</small>
+                <button class="help-button">help</button>
+                <br>
+                <br>
+                <div class="four-columns">
+                    <label id="lblEngReview" class="span-four">Review by CF Engineering: <span class="asterisk">* Required</span><br><small>(indicate disposition by clicking one of the following)</small></label>
+                
+                    <div class="inline-wrapper span-four">
+                        <div class="inline-item">
+                            <input type="radio" id="radUseAsIs" name="radEngReview" value="Use as is" class="formField">
+                            <label for="radUseAsIs">Use as is</label>
+                        </div>
+                        <div class="inline-item">
+                            <input type="radio" id="radRepair" name="radEngReview" value="Repair" class="formField">
+                            <label for="radRepair">Repair</label>
+                        </div>
+                        <div class="inline-item">
+                            <input type="radio" id="radRework" name="radEngReview" value="Rework" class="formField">
+                            <label for="radRework">Rework</label>
+                        </div>
+                        <div class="inline-item">
+                            <input type="radio" id="radScrap" name="radEngReview" value="Scrap" class="formField">
+                            <label for="radScrap">Scrap</label>
+                        </div>
+                    </div>
+                    <div class="span-four">
+                        <input type="checkbox" id="chkNotifyCustomer" name="chkNotifyCustomer" class="formField">
+                        <label for="chkNotifyCustomer">Customer requires notification of NCR?</label>
+                    </div>
+                    <div class="span-four">
+                        <label for="txaDisposition">Disposition: <span class="asterisk"></span><br><small>(Sequence of work steps required when "repair" or "rework" indicated)</small></label>
+                        <textarea id="txaDisposition" name="txaDisposition" class="formField" placeholder="Enter required steps"></textarea>
+                    </div>
+                
+                    <div class="span-four">
+                        <input type="checkbox" id="chkUpdateDrawing" name="chkUpdateDrawing" class="formField">
+                        <label for="chkUpdateDrawing">Drawing Requires Updating?</label>
+                    </div>
+                
+                        <div>
+                            <label for="numOriginalRevNo">Original Rev. Number: <span class="asterisk"></span></label>
+                            <input type="number" id="numOriginalRevNo" name="numOriginalRevNo" class="formField" placeholder="123456789">
+                        </div>
+                        <div>
+                            <label for="numUpdatedRevNo">Updated Rev. Number" <span class="asterisk"></span></label>
+                            <input type="number" id="numUpdatedRevNo" name="numUpdatedRevNo" class="formField" placeholder="987654321">
+                        </div>
+                        <div>
+                            <label for="numUpdatedOn">Revision Date: <span class="asterisk"></span></label>
+                            <input type="date" id="numUpdatedOn" name="numUpdatedDate" class="formField">
+                        </div>
+                        <div>
+                            <label for="txtUpdatedBy">Name of Engineer: <span class="asterisk"></span></label>
+                            <input type="text" id="numUpdatedBy" name="numUpdatedBy" class="formField" placeholder="John Doe">
+                        </div>
+                </div>
+
+                <div>
+                    <button id="btnEngSave" class="btn">Save</button>
+                    <button id="btnEngComplete" class="btn">Complete</button>
+                    <button id="btnEngClose" class="btn">Close</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="engdisplay">
+            <h2>Engineering Form Section</h2>
+            <div id="engdisplaywrapper" class="displaywrapper">
+                
+                    <div class="displayItem" id="displayItemReviewOpt">
+                        <p>Review by CF Engineering: <span class="displayField" id="displayReviewOpt"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemNotifyCustomer">
+                        <p>Customer notified of NCR: <span class="displayField" id="displayNotifyCustomer"></span></p>
+                    </div>
+                    <div class="displayItem span-two" id="displayItemDisposition">
+                        <p>Disposition: <br><span class="displayField" id="displayDisposition"></span></p>
+                    </div>
+                    <div class="displayItem span-two" id="displayItemUpdateDrawing">
+                        <p>Drawing Requires Updating: <span class="displayField" id="displayUpdateDrawing"></span></p>
+                    </div> 
+                    <div class="displayItem" id="displayItemOriginalRevNo">
+                        <p>Original Rev. Number: <span class="displayField" id="displayOriginalRevNo"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemUpdatedRevNo">
+                        <p>Updated Rev. Number: <span class="displayField" id="displayUpdatedRevNo"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemRevDate">
+                        <p>Updated on: <span class="displayField" id="displayRevDate"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemUpdatedBy">
+                        <p>Updated by: <span class="displayField" id="displayUpdatedBy"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemEngCompletedBy">
+                        <p>Completed by: <span class="displayField" id="displayEngCompletedBy"></span></p>
+                    </div>
+                    <div class="displayItem" id="displayItemEngCompletedOn">
+                        <p>Completed on: <span class="displayField" id="displayEngCompletedOn"></span></p>
+                    </div>
+                
+            </div>
+            <button class="btnCollapseDisplay" id="btnEngCollapseDisplay">Hide</button>
+        </section>
+
+        <section id="saleform">
+
+        </section>
+
+        <section id="saledisplay">
+
+        </section>
+        
+        <section id="ncrfoot">
+            <div>
+                <button id="btnPrint">Print to PDF</button>
+                <button id="btnClose">Close</button>
+            </div>
+        </section>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NCR Home</title>
+    <script src="scripts/pseudobackend.js"></script>
+    <script src="scripts/index.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"/>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" aria-label="main menu">
+        <a href="index.html">
+          <img
+            src="images/Crossfire_Logo-removebg-preview.ico"
+            alt="Crossfire NCR System"
+          />
+        </a>
+        <ul class="menu">
+          <li id="navHome">Home</li>
+          <li id="navNewForm">New NCR</li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="filters">
+      <div class="three-columns">
+        <div class="nonCollapsableFilterItem">
+          <label
+            for="sltNumShown"
+            class="noncollapsableFilterLblnputLbl"
+            id="lblNumShown1"
+            >Showing
+          </label>
+          <select class="nonCollapsableFilterInput" id="sltNumShown">
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="0">All</option>
+          </select>
+          <label for="sltNumShown" class="noncollapsableFilterLblnputLbl" id="lblNumShown2">items per page.</label>
+        </div>
+
+        <button class="nonCollapsableFilterInput" id="btnToggleShowFilters">Show Filters</button>
+        
+        <div class="nonCollapsableFilterItem">
+          <button class="help-button" id="btnHelp">Help</button>
+        </div>
+      </div>
+      
+
+      <form id="collapsableFilterItems">                            <!-- GeonUk : changed from div to form, for clear button -->
+          <div class="collapsableFilterItem" id="NCRNoFilter">
+              <label for="numNCRNoFilter"
+                     class="collapsableFilterLblnputlLbl"
+                     id="lblNCRNoFilter">
+                  Filter by NCR number:
+              </label>
+              <input type="number"
+                     class="collapsableFilterInput"
+                     id="numNCRNoFilter" 
+                     placeholder="123456789"/>
+          </div>
+
+          <div class="collapsableFilterItem" id="PONoFilter">
+              <label for="numPONoFilter" class="collapsableFilterLbl" id="lblPONoFilter">
+                  Filter by PO number:
+              </label>
+              <input type="number"
+                     class="collapsableFilterInput"
+                     id="numPONoFilter" 
+                     placeholder="123456789"/>
+          </div>
+
+          <div class="collapsableFilterItem" id="SuppFilter">
+              <label for="txtSuppFilter" class="collapsableFilterLbl" id="lblSuppFilter">
+                  Filter by supplier:
+              </label>
+              <input type="text"
+                     class="collapsableFilterInput"
+                     id="txtSuppFilter" 
+                     placeholder="Some company"/>
+          </div>
+
+          <div class="collapsableFilterItem" id="SAPNoFilter">
+              <label for="numSAPNoFilter" class="collapsableFilterLbl" id="lblSAPNoFilter">
+                  Filter by SAP Number:
+              </label>
+              <input type="number"
+                     class="collapsableFilterInput"
+                     id="numSAPNoFilter" 
+                     placeholder="123456789"/>
+          </div>
+
+          <div class="collapsableFilterItem" id="ProdDescFilter">
+              <label for="txtProdDescFilter"
+                     class="collapsableFilterLbl"
+                     id="lblProdDescFilter">
+                  Filter by product description:
+              </label>
+              <input type="text"
+                     class="collapsableFilterInput"
+                     id="txtProdDescFilter" 
+                     placeholder="A thing"/>
+          </div>
+
+          <div class="collapsableFilterItem" id="DateFilter">
+              <label for="sltDateFilter" class="collapsableFilterLbl" id="lblDateFilter">
+                  Sort date by:
+              </label>
+              <select class="collapsableFilterInput" id="sltDateFilter">
+                  <option value="none">None</option>
+                  <option value="new">New</option>
+                  <option value="old">Old</option>
+              </select>
+          </div>
+          <div class="collapsableFilterItem" id="StageFilter">
+            <label for="sltStageFilter" class="collapsableFilterLbl" id="lblStageFilter">Showing forms in stage:</label>
+            <select class="collapsableFilterInput" id="sltStageFilter">
+              <option value="a">All</option>
+              <option value="q">Quality Assurance</option>
+              <option value="e">Engineering</option>
+            </select>
+          </div>
+
+          <!-- GeonUk : Clear button for reset the input fields -->
+          <div class="collapsableFilterItem" id="FilterClearButton">
+              <button class="clearButtons" id="btnFilterClear" type="button">Clear</button>
+          </div>
+      </form>
+    </div>
+    <div id="temp">
+      <p>Click on a table item to edit/view its associated NCR form. Click on a table header to sort by that column.</p>
+    </div>
+    <table id="list">
+      <thead id="tableHead">
+        <tr>
+          <!-- GeonUk : add 'data-sort-key' on table head for sorting. And names matched with backend object properties -->
+          <th data-sort-key="ID">NCR Number</th>
+          <th data-sort-key="poID">PO or Prod. Number</th>
+          <th data-sort-key="supplierName">Supplier</th>
+          <th data-sort-key="productID">SAP Number</th>
+          <th data-sort-key="productDesc">Product Description</th>
+          <th data-sort-key="ncrDateOpened">Date Opened</th>
+          <th data-sort-key="ncrActive">Stage</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr>
+          <td>####</td>
+          <td>####</td>
+          <td>####</td>
+          <td>####</td>
+          <td>####</td>
+          <td>####</td>
+          <td>####</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="navForm">
+      <button class="pageButtons" id="back">Back</button>
+
+          <label for="pageInput" id="pageNumber">Page</label>
+          <input type="number" id="pageInput" value="1" min="1" />
+      
+      <button class="pageButtons" id="next">Next</button>
+    </div>
+  </body>
+</html>

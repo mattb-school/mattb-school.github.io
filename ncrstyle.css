@@ -1,0 +1,243 @@
+body {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  background: #f5f7fa;
+  color: #111827;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Header styling */
+
+header {
+  background: #acb0b6;
+  color: #0b1a3a;
+  padding: 8px 16px;
+  margin-top: 0;
+  border: 1px solid #b7babf;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.navbar img {
+  height: 180px;
+  width: auto;
+  margin: 10px 0 0 100px;
+}
+
+.menu {
+  height: auto;
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  margin-right: 50px;
+}
+
+.menu li {
+  display: block;
+  font-size: 22px;
+  color: #0b1a3a;
+  text-decoration: none;
+  font-weight: 900;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.menu li a {
+  padding: 0;
+}
+
+.menu li:hover {
+  text-decoration: underline;
+  color: #49749f;
+}
+
+/* Form & display section */
+
+#wrapper {
+    display:grid;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+
+    margin: 15px auto;
+    width: 90%;
+}
+
+section{
+    
+    border-top: 1px dashed #e5e7eb;
+}
+
+#ncrhead {
+    border-top: none;
+}
+
+.two-columns {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+.three-columns {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+.four-columns {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+.help-button {
+  background-color: #a8c4ff;
+  font-weight: 600;
+  font-size: 12px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 8px;
+  box-shadow: 1px 2px 6px rgba(17, 24, 39, 0.18);
+  
+  padding: 4px 8px;
+  margin: 5px 4px;
+}
+
+.help-button:hover {
+  background-color: #95b7ff;
+  box-shadow: 2px 4px 10px rgba(17, 24, 39, 0.22);
+  transform: translateY(-2px);
+}
+
+/* Display & form items */
+
+.span-two {
+    grid-column: span 1;
+}
+
+.span-three {
+    grid-column: span 1;
+}
+
+.span-four {
+    grid-column: span 1;
+}
+
+.asterisk{
+  color: red;
+}
+
+.displayField {
+    font-weight: bolder;
+}
+
+/* inputs */
+
+form{
+  gap: 50px
+}
+
+button{
+  cursor: pointer;
+  border: 1.5px solid #0b1a3a;
+  background: #ffffff;
+  color: #0b1a3a;
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 8px 16px;
+  margin: 10px 8px;
+  transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.2s ease;
+  box-shadow: 0 6px 14px rgba(11, 26, 58, 0.08);
+}
+
+button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(11, 26, 58, 0.12);
+  background: #f3f6fb;
+}
+
+button:disabled{
+  background: lightgrey;
+}
+
+input[type="number"], input[type="text"], input[type="date"]{
+  display: block;
+  width: 100%;
+  min-height: 1.75rem;
+}
+
+input[type="radio"], input[type="checkbox"]{
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  accent-color: #0b1a3a;
+}
+
+input[type="radio"]:hover, input[type="checkbox"]:hover{
+  transform: scale(1.2);
+}
+
+textarea {
+  width: 100%;
+  min-height: 130px;
+  resize: vertical;
+}
+
+.inline-wrapper{
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* for desktop */
+@media screen and (min-width: 1440px) {
+  #wrapper {
+    width: 65%;
+  }
+
+  .two-columns{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .three-columns{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .four-columns{
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .span-two {
+    grid-column: span 2;
+  }
+
+  .span-three {
+    grid-column: span 3;
+  }
+
+  .span-four {
+    grid-column: span 4;
+  }
+}
+
+/* get rid of arrows on number boxes */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
